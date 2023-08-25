@@ -1,4 +1,10 @@
 {
 	"rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
-	"serverSideRendering": true
+	"builds": [
+		{
+			"src": "package.json",
+			"use": "vercel",
+			"serverSideRendering": true
+		}
+	]
 }
