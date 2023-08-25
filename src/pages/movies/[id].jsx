@@ -13,9 +13,10 @@ import {
 	Contenedor,
 	Puntuaciones,
 } from "@styles/pages.styles/movies.styles";
-import { fetchMovies } from "../api/movies";
+/* import { fetchMovies } from "../api/movies"; */
 import Card from "@components/card/Card";
 import Image from "next/image";
+import { getMovie, getMovies } from "@/services/movies/movie.service";
 
 function MovieDetail({ movies, cardMovies }) {
 	return (
@@ -94,12 +95,8 @@ function MovieDetail({ movies, cardMovies }) {
 
 export async function getServerSideProps(contexto) {
 	const { id } = contexto.params;
-	console.log("🚀 ~ file: [id].jsx:97 ~ getServerSideProps ~ id:", id);
-	const response = await fetch(`https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/api/v1/movies/${id}`);
-	console.log(response);
-	const movies = await response.json();
-	const cardMovies = await fetchMovies();
-	console.log("🚀 ~ file: [id].jsx:103 ~ getServerSideProps ~ cardMovies:", cardMovies);
+	const movies = await getMovie(id);
+	const cardMovies = await getMovies();
 
 	return {
 		props: {
