@@ -13,11 +13,11 @@ import {
 	Contenedor,
 	Puntuaciones,
 } from "@styles/pages.styles/movies.styles";
-/* import { fetchMovies } from "../api/movies"; */
+import Card from "@components/card/Card";
 import Image from "next/image";
-import { getMovie } from "@/services/movies/movie.service";
+import { getMovie, getMovies } from "@/services/movies/movie.service";
 
-function MovieDetail({ movies }) {
+function MovieDetail({ movies, cardMovies }) {
 	return (
 		<main>
 			<Purple></Purple>
@@ -76,15 +76,14 @@ function MovieDetail({ movies }) {
 				</DescriptioContainer>
 				<Sugestions>
 					<h4 className="oldies_title">Sugerencias</h4>
-					{/* <Carousel movies={moviesTop} top={true} /> */}
-					{/* <div className="suggestions_cards">
+					<div className="suggestions_cards">
 						{cardMovies.slice(0, 3).map((item) => (
 							<div className="card" key={item.id}>
 								{" "}
 								<Card movie={item} />
 							</div>
 						))}
-					</div> */}
+					</div>
 				</Sugestions>
 			</Contenedor>
 		</main>
@@ -94,54 +93,15 @@ function MovieDetail({ movies }) {
 export async function getServerSideProps(contexto) {
 	const { id } = contexto.params;
 	const movies = await getMovie(id);
+	const cardMovies = await getMovies();
 
 	return {
 		props: {
 			movies,
+			cardMovies,
 		},
-	};
-}
-
-/* export async function getStaticProps(context) {
-	const { id } = context.params;
-
-	try {
-		const response = await fetch(`https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/api/v1/movies/${id}`);
-
-		if (!response.ok) {
-			throw new Error(`Failed to fetch movie with ID ${id}`);
-		}
-
-		const movies = await response.json();
-		const cardMovies = await fetchMovies(); // Supongo que fetchMovies() obtiene la lista de películas
-
-		return {
-			props: {
-				movies,
-				cardMovies,
-			},
-		};
-	} catch (error) {
-		console.error(error);
-
-		return {
-			props: {
-				error: "An error occurred while fetching the movie.",
-			},
-		};
-	}
-}
-
-export async function getStaticPaths() {
-	const cardMovies = await fetchMovies();
-	const paths = cardMovies.map((movie) => {
-		return { params: { id: movie.movieId.toString() } };
-	});
-
-	return {
-		paths,
 		fallback: true,
 	};
-} */
+}
 
 export default MovieDetail;
