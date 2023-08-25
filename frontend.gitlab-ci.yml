@@ -1,0 +1,48 @@
+default:
+  image: node:16.16.0
+
+stages:
+    - build
+    - test
+    - deploy
+
+.base-rules:
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: always
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+      when: never
+
+.frontend.common:
+    rules:
+        - changes:
+            - 'frontend/*'
+
+frontend-build-job:
+    extends: 
+      - .frontend.common
+      - .base-rules
+    stage: build
+    script:
+        - echo "Building Frontend"
+
+frontend-test-job:
+    extends: 
+      - .frontend.common
+      - .base-rules
+    stage: test
+    script:
+        - echo "Testing Frontend"
+
+frontend-deploy-job:
+  stage: deploy
+  extends: 
+    - .frontend.common
+    - .base-rules
+  script:
+    - npm install --global vercel
+    - cd frontend
+    - ls
+    - vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+    - vercel build --prod --token=$VERCEL_TOKEN
+    - vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
