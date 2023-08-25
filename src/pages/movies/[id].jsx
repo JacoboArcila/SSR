@@ -98,7 +98,6 @@ export async function getServerSideProps(contexto) {
 	const response = await fetch(`https://83n5sz9zvl.execute-api.us-east-1.amazonaws.com/api/v1/movies/${id}`);
 	console.log(response);
 	const movies = await response.json();
-	console.log("🚀 ~ file: [id].jsx:101 ~ getServerSideProps ~ movies:", movies);
 	const cardMovies = await fetchMovies();
 	console.log("🚀 ~ file: [id].jsx:103 ~ getServerSideProps ~ cardMovies:", cardMovies);
 
