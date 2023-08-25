@@ -14,11 +14,10 @@ import {
 	Puntuaciones,
 } from "@styles/pages.styles/movies.styles";
 /* import { fetchMovies } from "../api/movies"; */
-import Card from "@components/card/Card";
 import Image from "next/image";
-import { getMovie, getMovies } from "@/services/movies/movie.service";
+import { getMovie } from "@/services/movies/movie.service";
 
-function MovieDetail({ movies, cardMovies }) {
+function MovieDetail({ movies }) {
 	return (
 		<main>
 			<Purple></Purple>
@@ -78,15 +77,14 @@ function MovieDetail({ movies, cardMovies }) {
 				<Sugestions>
 					<h4 className="oldies_title">Sugerencias</h4>
 					{/* <Carousel movies={moviesTop} top={true} /> */}
-					<div className="suggestions_cards">
+					{/* <div className="suggestions_cards">
 						{cardMovies.slice(0, 3).map((item) => (
 							<div className="card" key={item.id}>
 								{" "}
-								{/* Asegúrate de usar una clave única para cada elemento */}
 								<Card movie={item} />
 							</div>
 						))}
-					</div>
+					</div> */}
 				</Sugestions>
 			</Contenedor>
 		</main>
@@ -96,12 +94,10 @@ function MovieDetail({ movies, cardMovies }) {
 export async function getServerSideProps(contexto) {
 	const { id } = contexto.params;
 	const movies = await getMovie(id);
-	const cardMovies = await getMovies();
 
 	return {
 		props: {
 			movies,
-			cardMovies,
 		},
 	};
 }
