@@ -5,7 +5,14 @@ const nextConfig = {
 	images: {
 		domains: ["ecran.s3.amazonaws.com", "hydramovies.com"],
 	},
-	swcMinify: true,
+	async rewrites() {
+		return [
+			{
+				source: "/:any*",
+				destination: "/",
+			},
+		];
+	},
 };
 
 module.exports = nextConfig;
