@@ -100,7 +100,6 @@ export async function getServerSideProps(contexto) {
 			movies,
 			cardMovies,
 		},
-		fallback: true,
 	};
 }
 
