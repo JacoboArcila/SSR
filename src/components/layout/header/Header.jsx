@@ -4,7 +4,6 @@ import Link from "next/link";
 import { MdClose } from "react-icons/md";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { HeaderContainer } from "./Header.styles";
-import { MdExplore } from "react-icons/md";
 
 const Header = () => {
 	const [openNav, setOpenNav] = useState(false);
@@ -47,10 +46,10 @@ const Header = () => {
 						</Link>
 					</li> */}
 					<li>
-						<Link href="/discover" className="buttonExplore">
+						{/* <Link href="/discover" className="buttonExplore">
 							<MdExplore className="icon" />
 							Explorar
-						</Link>
+						</Link> */}
 					</li>
 				</ul>
 			</nav>
