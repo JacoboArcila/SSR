@@ -20,7 +20,7 @@ export default function Search({ showAutocomplete, props }) {
 		() =>
 			//función que crea un componente de autocompletado.
 			createAutocomplete({
-				placeholder: "Nemo, The Walking Dead...",
+				placeholder: "Buscando a Nemo, El Padrino...",
 				//función que se invocará cuando cambie el estado del componente de autocompletado.
 				onStateChange: ({ state }) => setAutocompleteState(state),
 				// función que devuelve un array con datos
@@ -35,6 +35,8 @@ export default function Search({ showAutocomplete, props }) {
 									id: movie.movieId,
 									title: movie.title,
 									image_url: movie.image_url,
+									genre: movie.genres.join(", "),
+									year: movie.release_date,
 								}));
 								return items;
 							}
@@ -63,6 +65,8 @@ export default function Search({ showAutocomplete, props }) {
 					id: movie.movieId,
 					title: movie.title,
 					image_url: movie.image_url,
+					genre: movie.genres.join(", "),
+					year: movie.release_date,
 				}));
 				router.push({
 					pathname: "/search-result",

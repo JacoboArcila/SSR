@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import Modal from "react-modal";
 
 export const Purple = styled.div`
-	height: 63vh;
+	height: 40vh;
 	background-image: url("/images/home/Bg.svg");
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -161,6 +162,9 @@ export const PosterContainer = styled.div`
 	height: 450px;
 	width: 320px;
 	margin-bottom: 6rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 
 	@media screen and (max-width: 1024px) {
 		margin-bottom: 2rem;
@@ -173,6 +177,7 @@ export const Poster = styled.img`
 	width: 100%;
 	object-fit: cover;
 	border-radius: 10px;
+	cursor: pointer;
 
 	@media screen and (max-width: 1024px) {
 		height: 85%;
@@ -255,6 +260,12 @@ export const Puntuaciones = styled.div`
 	}
 	.div8 {
 		grid-area: 2 / 3 / 3 / 4;
+	}
+	.div9 {
+		grid-area: 1 / 4 / 5 / 5;
+	}
+	.div10 {
+		grid-area: 2 / 4 / 5 / 5;
 	}
 
 	.numerosPorcentaje {
@@ -347,4 +358,30 @@ export const Sugestions = styled.div`
 			margin-top: 2rem;
 		}
 	}
+`;
+
+//styles for the new elements to trailer
+
+export const VideoModal = styled(Modal)`
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 80%;
+	height: 80%;
+	max-width: 800px;
+	background-color: rgba(32, 32, 32, 0.75);
+	padding: 20px;
+	border-radius: 8px;
+`;
+
+export const CloseButton = styled.button`
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: transparent;
+	border: none;
+	color: white;
+	cursor: pointer;
+	font-size: 18px;
 `;
