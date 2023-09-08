@@ -7,6 +7,8 @@ import Search from "@components/search/Search";
 import fetchMoviesWithTop, { fetchMovies, fetchMoviesDate } from "@/service/movies/movies.service";
 
 export default function Home({ response, moviesTop, moviesOld }) {
+	const hola = "hola"
+	console.log(hola);
 	return (
 		<>
 			<MainHome>
